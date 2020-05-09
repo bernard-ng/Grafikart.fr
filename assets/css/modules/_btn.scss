@@ -8,7 +8,7 @@
   border-radius: 4px;
   font-family: $font-alt;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #FFFFFF!important;
   cursor: pointer;
   transition: background .3s;
   font-size: .9em;
@@ -85,4 +85,8 @@
     background-color: var(--color-inversed);
     border-color: var(--color-inversed);
   }
+}
+
+.stack > button {
+  justify-self: flex-start;
 }

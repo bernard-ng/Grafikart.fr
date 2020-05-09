@@ -2,6 +2,7 @@
 
 namespace App\Domain\Forum\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use App\Domain\Auth\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -18,6 +19,7 @@ class Topic
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
+     * @ApiProperty(identifier=true)
      */
     private ?int $id = null;
 
@@ -37,12 +39,12 @@ class Topic
     /**
      * @ORM\Column(type="boolean", options={"default":0})
      */
-    private ?bool $solved = null;
+    private ?bool $solved = false;
 
     /**
      * @ORM\Column(type="boolean", options={"default":0})
      */
-    private ?bool $sticky = null;
+    private ?bool $sticky = false;
 
     /**
      * @ORM\Column(type="datetime")
@@ -63,10 +65,10 @@ class Topic
     private Collection $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Auth\User", inversedBy="topics")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Auth\User")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
-    private ?User $author = null;
+    private User $author;
 
     /**
      * @ORM\Column(type="integer", options={"default": 0})
@@ -83,6 +85,8 @@ class Topic
      * @ORM\JoinColumn(nullable=true)
      */
     private ?Message $lastMessage = null;
+
+    use SpamTrait;
 
     public function __construct()
     {
@@ -200,12 +204,12 @@ class Topic
         return $this;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): User
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    public function setAuthor(User $author): self
     {
         $this->author = $author;
 

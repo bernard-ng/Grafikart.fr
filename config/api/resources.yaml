@@ -1,0 +1,39 @@
+App\Domain\Forum\Entity\Report:
+  collectionOperations:
+    post:
+      security: is_granted("forumReport")
+      denormalization_context:
+        groups: ["create:report"]
+        swagger_definition_name: "ReportCreate"
+      normalization_context:
+        groups: ["read:report"]
+        swagger_definition_name: "ReportRead"
+      openapi_context:
+        summary: Crée un nouveau signalement
+  itemOperations:
+    get:
+      controller: "EmptyController"
+
+App\Domain\Forum\Entity\Topic:
+  collectionOperations: []
+  itemOperations:
+    get:
+      normalization_context:
+        groups: ["read:topic"]
+
+App\Domain\Notification\Entity\Notification:
+  collectionOperations:
+    get:
+      security: is_granted("ROLE_USER")
+      pagination_client_items_per_page: true
+      normalization_context:
+        groups: ["read:notification"]
+    post:
+      security: is_granted("CREATE_NOTIFICATION")
+      normalization_context:
+        groups: ["read:notification"]
+      denormalization_context:
+        groups: ["create:notification"]
+  itemOperations:
+    get:
+      controller: "EmptyController"

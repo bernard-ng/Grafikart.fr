@@ -20,7 +20,8 @@ Encore
   .addAliases({
     svelte: path.resolve('node_modules', 'svelte'),
     '@fn': path.resolve('assets', 'js', 'functions'),
-    '@el': path.resolve('assets', 'js', 'elements')
+    '@el': path.resolve('assets', 'js', 'elements'),
+    '@comp': path.resolve('assets', 'js', 'components')
   })
   .addLoader(
     {
@@ -52,6 +53,7 @@ Encore
 
   // enables Sass/SCSS support
   .enableSassLoader()
+  .enablePreactPreset({ preactCompat: true })
 
 // uncomment if you use TypeScript
 // .enableTypeScriptLoader()

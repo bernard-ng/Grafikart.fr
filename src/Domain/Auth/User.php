@@ -2,6 +2,9 @@
 
 namespace App\Domain\Auth;
 
+use App\Domain\Notification\Entity\Notifiable;
+use App\Domain\Premium\Entity\PremiumTrait;
+use App\Infrastructure\Payment\Stripe\StripeEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -59,6 +62,15 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="datetime", nullable=true)
      */
     private ?\DateTimeInterface $createdAt = null;
+
+    /**
+     * @ORM\Column(type="string", length=2, nullable=true)
+     */
+    private ?string $country = null;
+
+    use PremiumTrait;
+    use StripeEntity;
+    use Notifiable;
 
     public function getId(): ?int
     {
@@ -200,4 +212,16 @@ class User implements UserInterface, \Serializable
             $this->password,
             ] = unserialize($serialized);
     }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): User
+    {
+        $this->country = $country;
+        return $this;
+    }
+
 }

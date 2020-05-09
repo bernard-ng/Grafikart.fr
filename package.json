@@ -4,14 +4,16 @@
   "main": "index.js",
   "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@symfony/webpack-encore": "^0.28.2",
     "@types/youtube": "^0.0.38",
+    "babel-plugin-jsx-pragmatic": "^1.0.2",
     "doctoc": "^1.4.0",
     "jest": "^25.1.0",
-    "style-loader": "^1.1.3",
-    "node-sass": "^4.13.1",
+    "sass": "^1.26.5",
     "sass-loader": "^7.0.1",
     "standard": "^14.3.1",
+    "style-loader": "^1.1.3",
     "svelte-loader": "^2.13.6"
   },
   "scripts": {
@@ -24,12 +26,14 @@
   },
   "dependencies": {
     "@grafikart/spinning-dots-element": "^0.0.3",
+    "@sb-elements/all": "^0.3.0",
     "@types/jest": "^25.1.3",
     "choices.js": "^9.0.1",
     "codemirror": "^5.52.0",
     "flatpickr": "^4.6.3",
     "htm": "^3.0.3",
     "monaco-editor": "^0.20.0",
+    "preact": "^10.4.1",
     "scriptjs": "^2.5.9",
     "sortablejs": "^1.10.2",
     "svelte": "^3.18.2",
