@@ -1,0 +1,35 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: sensio/framework-extra-bundle
+    versions:
+    - 5.6.1
+    - 6.0.0
+    - 6.1.1
+  - dependency-name: stripe/stripe-php
+    versions:
+    - 7.67.0
+    - 7.70.0
+    - 7.72.0
+    - 7.75.0
+  - dependency-name: symfony/expression-language
+    versions:
+    - 5.2.2
+    - 5.2.3
+  - dependency-name: symfony/string
+    versions:
+    - 5.2.1
+    - 5.2.2
+    - 5.2.3
+  - dependency-name: symfony/security-bundle
+    versions:
+    - 5.1.10
+  - dependency-name: twig/markdown-extra
+    versions:
+    - 3.1.1
